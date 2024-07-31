@@ -8,6 +8,9 @@ use App\Http\Controllers\Api\ApiController;
 // Register
 Route::post('register',[ApiController::class,'register']);
 
+// Login
+Route::post('login',[ApiController::class,'login']);
+
 Route::get('/', function()
 {
     return response()->json([

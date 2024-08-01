@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\NoteController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\ProfileController;
 
@@ -18,6 +19,9 @@ Route::group([
     //Profile
     Route::get('profile',[ProfileController::class,'profile']);
 });
+
+//Add Notes
+Route::post('notes', [NoteController::class, 'addNote']);
 
 // Test
 Route::get('/', function()

@@ -12,16 +12,16 @@ Route::post('register',[AuthController::class,'register']);
 // Login
 Route::post('login',[AuthController::class,'login']);
 
-//Data
+//Data & Auth Access
 Route::group([
     'middleware' => ['auth:sanctum']
 ],function(){
     //Profile
     Route::get('profile',[ProfileController::class,'profile']);
-});
 
-//Add Notes
-Route::post('notes', [NoteController::class, 'addNote']);
+    //Add Notes
+    Route::post('notes', [NoteController::class, 'addNote']);
+});
 
 // Test
 Route::get('/', function()

@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\NoteController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\ProfileController;
 
@@ -11,12 +12,15 @@ Route::post('register',[AuthController::class,'register']);
 // Login
 Route::post('login',[AuthController::class,'login']);
 
-//Data
+//Data & Auth Access
 Route::group([
     'middleware' => ['auth:sanctum']
 ],function(){
     //Profile
     Route::get('profile',[ProfileController::class,'profile']);
+
+    //Add Notes
+    Route::post('notes', [NoteController::class, 'addNote']);
 });
 
 // Test

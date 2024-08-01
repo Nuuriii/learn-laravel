@@ -2,12 +2,24 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Api\ApiController;
-
+use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\ProfileController;
 
 // Register
-Route::post('register',[ApiController::class,'register']);
+Route::post('register',[AuthController::class,'register']);
 
+// Login
+Route::post('login',[AuthController::class,'login']);
+
+//Data
+Route::group([
+    'middleware' => ['auth:sanctum']
+],function(){
+    //Profile
+    Route::get('profile',[ProfileController::class,'profile']);
+});
+
+// Test
 Route::get('/', function()
 {
     return response()->json([

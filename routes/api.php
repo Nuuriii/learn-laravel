@@ -24,10 +24,12 @@ Route::group([
 
     //Edit Notes
     Route::put('notes/edit/{id}',[NoteController::class,'editNote']);
+
+    //Show Detail Notes
+    Route::get('notes/show/{id}',[NoteController::class,'showNote']);
 });
 
-//Show Detail Notes
-Route::get('notes/show/{id}',[NoteController::class,'showNote']);
+
 
 // Test
 Route::get('/', function()

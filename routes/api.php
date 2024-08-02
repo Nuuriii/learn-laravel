@@ -27,6 +27,9 @@ Route::group([
 
     //Show Detail Notes
     Route::get('notes/show/{id}',[NoteController::class,'showNote']);
+
+    //Delete Notes
+    Route::delete('notes/delete/{id}', [NoteController::class,'deleteNote']);
 });
 
 

@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\NoteController;
+use App\Http\Controllers\Api\NoteController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\ProfileController;
 
@@ -21,7 +21,15 @@ Route::group([
 
     //Add Notes
     Route::post('notes', [NoteController::class, 'addNote']);
+
+    //Edit Notes
+    Route::put('notes/edit/{id}',[NoteController::class,'editNote']);
+
+    //Show Detail Notes
+    Route::get('notes/show/{id}',[NoteController::class,'showNote']);
 });
+
+
 
 // Test
 Route::get('/', function()

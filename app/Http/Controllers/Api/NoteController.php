@@ -57,7 +57,7 @@ class NoteController extends Controller
 
         if (!$note) {
             return response()->json([
-                'message' => 'Note tidak ditemukan'
+                'message' => 'Note not found'
             ], 404);
         }
 
@@ -78,8 +78,25 @@ class NoteController extends Controller
             $updatedNote = DB::table('notes')->where('id', $id)->first();
 
             return response()->json([
-                'message' => 'Note successfully updated',
+                'message' => 'Note was successfully updated',
                 'note' => $updatedNote
             ], 200);
+    }
+
+    //Delete Notes
+    public function deleteNote($id) {
+        $note = DB::table('notes')->where('id', $id)->first();
+
+        if (Auth::id() !== $note->id) {
+            return response()->json([
+                'message' => 'You do not have permission to edit this record'
+            ]);
+        }
+
+        DB::table('notes')->where('id', $id)->delete();
+
+        return response()->json([
+            'message' => 'Note is successfully deleted'
+        ], 200);
     }
 }
